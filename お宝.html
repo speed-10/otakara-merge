@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#172b4d">
+<title>お宝マージ！発掘ハンター</title>
+<style>
+:root{--navy:#172b4d;--blue:#315b8a;--gold:#ffd166;--cream:#fff8e9;--ink:#203047;--muted:#68758a;--line:#d9e1eb;--green:#1d8b68}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#dceeff,#f7f9fc 45%,#fff8e9);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:var(--ink);min-height:100vh}
+.wrap{max-width:560px;margin:auto;padding:14px 13px 28px}.hero{background:linear-gradient(135deg,#172b4d,#315b8a);color:white;padding:20px 18px 17px;border-radius:23px;box-shadow:0 8px 22px #172b4d25;position:relative;overflow:hidden}.hero:after{content:"✦";position:absolute;right:20px;top:3px;font-size:82px;color:#ffffff18}.eyebrow{font-size:11px;letter-spacing:.14em;opacity:.8}.hero h1{font-size:27px;line-height:1.15;margin:6px 0}.hero p{font-size:12px;margin:8px 0 0;opacity:.9}.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}.stat{background:#fff;border:1px solid #e0e7ef;border-radius:15px;padding:10px 12px;box-shadow:0 3px 10px #172b4d09}.stat small{display:block;color:var(--muted);font-size:11px}.stat strong{font-size:21px}.panel{background:#fff;border:1px solid #e0e7ef;border-radius:19px;padding:14px;margin:12px 0;box-shadow:0 5px 18px #172b4d0b}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:8px}.panel h2{font-size:16px;margin:0 0 5px}.hint{font-size:12px;color:var(--muted);margin:5px 0 12px;line-height:1.5}.board{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;padding:8px;background:#dce8f5;border-radius:15px;border:1px solid #cad9eb}.cell{border:0;border-radius:11px;aspect-ratio:1;background:linear-gradient(145deg,#fdfefe,#eaf1f8);box-shadow:inset 0 -3px 0 #c8d5e4;display:flex;align-items:center;justify-content:center;flex-direction:column;font-size:clamp(22px,7vw,34px);padding:0;position:relative;min-width:0;touch-action:manipulation}.cell.empty{background:#edf3f9;box-shadow:inset 0 2px 5px #b8c8db;color:#b3c1d1}.cell.selected{outline:3px solid #ffb703;outline-offset:1px;transform:scale(.96)}.cell .lv{position:absolute;right:4px;bottom:2px;font-size:9px;font-weight:800;color:#52647b}.cell .shine{position:absolute;top:3px;left:5px;font-size:9px;color:#d9a400}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.btn{border:0;border-radius:12px;padding:12px 10px;font:inherit;font-size:13px;font-weight:800;cursor:pointer;touch-action:manipulation}.primary{background:var(--gold);color:#503b00;box-shadow:0 3px 0 #e2a927}.secondary{background:#eaf2fc;color:#244a78;border:1px solid #d3e1f2}.dark{background:var(--navy);color:#fff}.btn:active{transform:translateY(1px)}.mission{display:flex;align-items:center;gap:10px;background:#fff8e5;border:1px solid #f5dfa2;border-radius:13px;padding:10px;margin-top:10px}.mission .icon{font-size:27px}.mission div{flex:1}.mission strong{font-size:12px;display:block}.mission small{font-size:11px;color:#79643b}.progress{height:6px;background:#f0e4c5;border-radius:99px;overflow:hidden;margin-top:5px}.progress span{display:block;height:100%;background:#e8ad2e;width:0%}.collection{display:flex;gap:8px;overflow:auto;padding:3px 0 5px}.treasure{flex:0 0 78px;text-align:center;background:#f7f9fc;border:1px solid #e0e7ef;border-radius:12px;padding:10px 5px}.treasure .emoji{font-size:27px;filter:grayscale(1);opacity:.3}.treasure.found .emoji{filter:none;opacity:1}.treasure small{display:block;font-size:10px;color:var(--muted);margin-top:4px}.toast{min-height:22px;text-align:center;color:#315b8a;font-size:12px;font-weight:700;margin:8px 0 0}.foot{text-align:center;color:#7b8798;font-size:10px;line-height:1.5;padding:8px}.modalback{position:fixed;inset:0;background:#10213bc9;display:none;align-items:center;justify-content:center;padding:20px;z-index:5}.modal{background:white;border-radius:22px;padding:23px;max-width:350px;width:100%;text-align:center}.modal .big{font-size:60px}.modal h2{margin:5px 0}.modal p{font-size:13px;color:var(--muted);line-height:1.6}.modal .btn{width:100%;margin-top:8px}
+@media(min-width:500px){.wrap{padding-top:22px}.hero h1{font-size:31px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">TAP · MERGE · DISCOVER</div>
+    <h1>お宝マージ！<br>発掘ハンター</h1>
+    <p>同じお宝を合体！伝説のお宝を発掘して、君だけの博物館を完成させよう。</p>
+  </header>
+  <div class="stats">
+    <div class="stat"><small>🪙 発掘コイン</small><strong id="coins">0</strong></div>
+    <div class="stat"><small>🏆 ベストスコア</small><strong id="best">0</strong></div>
+  </div>
+  <section class="panel">
+    <div class="panelhead"><h2>⛏️ 発掘エリア</h2><span id="moves" style="font-size:12px;color:#68758a">手数 0</span></div>
+    <p class="hint">同じレベルのお宝を2つタップして合体！隣り合っていなくてもOK。高レベルほど高得点。空きマスがなくなる前に発掘しよう。</p>
+    <div class="board" id="board" aria-label="発掘ボード"></div>
+    <div class="toast" id="toast">同じお宝を2つ選んでね！</div>
+    <div class="buttons">
+      <button class="btn primary" id="dig">✨ 発掘する（無料）</button>
+      <button class="btn secondary" id="hintBtn">💡 ヒントを見る</button>
+      <button class="btn secondary" id="reward">🎁 ボーナス獲得（デモ）</button>
+      <button class="btn dark" id="reset">↻ 最初から</button>
+    </div>
+    <div class="mission">
+      <div class="icon">🧭</div>
+      <div><strong>今日の発掘ミッション</strong><small id="missionText">レベル3のお宝を1個作ろう</small><div class="progress"><span id="progress"></span></div></div>
+      <strong id="missionCount">0/1</strong>
+    </div>
+  </section>
+  <section class="panel">
+    <h2>🏛️ お宝コレクション</h2>
+    <p class="hint">初めて見つけたお宝が博物館に登録されるよ。</p>
+    <div class="collection" id="collection"></div>
+  </section>
+  <section class="panel">
+    <h2>🎨 ハンターの装備</h2>
+    <p class="hint">今後追加できる要素の試作。コインで見た目を変えられるよ。</p>
+    <div class="buttons">
+      <button class="btn secondary" id="skin1">🧢 青い帽子 · 30🪙</button>
+      <button class="btn secondary" id="skin2">👑 王冠 · 100🪙</button>
+    </div>
+    <p class="hint" id="skinStatus" style="margin-bottom:0">装備：ふつうのハンター</p>
+  </section>
+  <div class="foot">試作品 v0.1 · 端末のブラウザ内に進行状況を保存します。<br>ボーナス獲得は動作確認用のデモで、実際の広告・課金はありません。</div>
+</div>
+<div class="modalback" id="modal"><div class="modal"><div class="big" id="modalEmoji">🎉</div><h2 id="modalTitle">発掘成功！</h2><p id="modalText"></p><button class="btn primary" id="modalClose">続けて発掘する</button></div></div>
+<script>
+(()=> {
+const $=id=>document.getElementById(id);
+const icons=['🪨','🦴','🪙','💎','👑','🔮','🏺','🐉'];
+const names=['ふしぎな石','古代の骨','古代コイン','青い宝石','王家の王冠','魔法の水晶','黄金の壺','竜の秘宝'];
+const values=[1,2,3,5,8,13,21,34];
+let board=[],selected=[],coins=0,score=0,best=0,moves=0,found=[],mission=0,skin='ふつうのハンター';
+function fmt(n){return Math.floor(n).toLocaleString('ja-JP')}
+function save(){try{localStorage.setItem('treasure_merge_save_v1',JSON.stringify({board,coins,score,best,moves,found,mission,skin}))}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem('treasure_merge_save_v1')||'null');if(d&&Array.isArray(d.board)&&d.board.length===25){board=d.board;coins=d.coins||0;score=d.score||0;best=d.best||0;moves=d.moves||0;found=Array.isArray(d.found)?d.found:[];mission=d.mission||0;skin=d.skin||'ふつうのハンター';return true}}catch(e){}return false}
+function newBoard(){board=Array(25).fill(0);selected=[];coins=30;score=0;moves=0;mission=0;found=[0];for(let i=0;i<7;i++){let j=Math.floor(Math.random()*25);if(!board[j])board[j]=1}render();save()}
+function render(){ $('board').innerHTML='';board.forEach((lv,i)=>{const b=document.createElement('button');b.className='cell'+(lv===0?' empty':'')+(selected.includes(i)?' selected':'');b.setAttribute('aria-label',lv?names[lv-1]:'空きマス');b.innerHTML=lv?`${icons[lv-1]}<span class="lv">Lv.${lv}</span>`:'＋';b.onclick=()=>tap(i);$('board').appendChild(b)});$('coins').textContent=fmt(coins);$('best').textContent=fmt(best);$('moves').textContent='手数 '+moves;$('missionCount').textContent=(mission>=1?'1':'0')+'/1';$('progress').style.width=(mission>=1?100:0)+'%';$('collection').innerHTML='';icons.forEach((ic,i)=>{const d=document.createElement('div');d.className='treasure'+(found.includes(i+1)?' found':'');d.innerHTML=`<div class="emoji">${ic}</div><small>${found.includes(i+1)?names[i]:'？？？'}</small>`;$('collection').appendChild(d)});$('skinStatus').textContent='装備：'+skin}
+function say(t){$('toast').textContent=t}
+function tap(i){if(board[i]===0){say('空きマスやで！「発掘する」を押してね。');return}if(selected.includes(i)){selected=selected.filter(x=>x!==i);render();return}if(selected.length===0){selected=[i];render();say('もう1つ同じレベルのお宝を選んでね！');return}const a=selected[0];if(board[a]===board[i]){const lv=board[a];board[a]=lv+1;board[i]=0;selected=[];coins+=values[Math.min(lv,7)-1]*3;score+=values[Math.min(lv,7)-1]*10;moves++;best=Math.max(best,score);if(!found.includes(lv+1)){found.push(lv+1);showModal(icons[Math.min(lv,7)-1],'新しいお宝を発見！',names[Math.min(lv,7)-1]+'が博物館に登録されたよ！ +' + values[Math.min(lv,7)-1]*3+'コイン');}else say('合体成功！ +' + values[Math.min(lv,7)-1]*3+'コイン');if(lv+1>=3)mission=1;render();save()}else{selected=[i];render();say('レベルが違うよ。同じお宝を選んでね！')}}
+function dig(){const empties=board.map((x,i)=>x===0?i:-1).filter(i=>i>=0);if(!empties.length){say('いっぱいや！同じレベルを合体させて空きを作ろう。');return}const i=empties[Math.floor(Math.random()*empties.length)];board[i]=1;coins=Math.max(0,coins-1);moves++;say('発掘！ふしぎな石が見つかった。');render();save();if(board.every(x=>x>0))say('ボードがいっぱい！合体してスペースを作ろう。')}
+function showModal(e,t,p){$('modalEmoji').textContent=e;$('modalTitle').textContent=t;$('modalText').textContent=p;$('modal').style.display='flex'}
+$('dig').onclick=dig;
+$('hintBtn').onclick=()=>{let pair=[];for(let i=0;i<25;i++)if(board[i])for(let j=i+1;j<25;j++)if(board[i]===board[j]){pair=[i,j];break}if(pair.length){selected=[pair[0]];render();say('光っているお宝と同じレベルを探してね！')}else say('同じレベルがないね。「発掘する」で石を追加しよう！')};
+$('reward').onclick=()=>{coins+=15;score+=5;best=Math.max(best,score);render();save();showModal('🎁','ボーナス！','デモ用のボタンで15コイン獲得。実際の広告視聴ではありません。')};
+$('reset').onclick=()=>{if(confirm('今の進行状況をリセットする？')){newBoard();say('新しい発掘エリアを用意したよ！')}};
+$('skin1').onclick=()=>buySkin('青い帽子',30);
+$('skin2').onclick=()=>buySkin('王冠',100);
+function buySkin(n,c){if(skin===n){say('すでに装備しているよ！');return}if(coins<c){say('コインが足りないよ！発掘して集めよう。');return}coins-=c;skin=n;render();save();say(n+'を装備したよ！')}
+$('modalClose').onclick=()=>{$('modal').style.display='none'};
+if(!load())newBoard();else render();
+})();
+</script>
+</body>
+</html>
